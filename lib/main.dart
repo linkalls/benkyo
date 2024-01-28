@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'busshitunokousei.dart';
+import 'kagakuketugou.dart';
+import 'busshitunohennka.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, // これを追加するだけ
       title: 'Flutter Demo',
       theme: ThemeData(
         brightness: Brightness.light,
@@ -187,7 +191,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         subjectText = '物理学';
                         break;
                     }
-                  } else if (subjectValue == '生物基礎') { //ここを書き換える
+                  } else if (subjectValue == '生物基礎') {
+                    //ここを書き換える
                     switch (index) {
                       case 0:
                         subjectText = '運動とエネルギー';
@@ -208,7 +213,31 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
                   if (subjectText != '') {
                     return ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        switch (subjectText) {
+                          case '物質の構成':
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BusshitunokouseiPage()),
+                            );
+                            break;
+                          case '化学結合':
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => KagakuketugouPage()),
+                            );
+                            break;
+                          case '物質の変化':
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BusshitunohennkaPage()),
+                            );
+                            break;
+                        }
+                      },
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             const EdgeInsets.all(20)),
